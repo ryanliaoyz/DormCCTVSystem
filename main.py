@@ -13,6 +13,7 @@ file_object.close()
 
 def RRecord(VideoLength):
     RecordTime = time.strftime('%H%M%S',time.localtime(time.time()))
+    DayFolder()
     while True:
         try:
             camera.start_recording('%s%s/%s.h264' %(RPath,RecordDate,RecordTime))
@@ -29,14 +30,19 @@ def SetPath():
     TPath = input("Enter the full new directory path to store the video:")
     if TPath[-1] != "/":
         TPath = TPath + "/"
-    RPath = TPath
     global RPath
+    RPath = TPath
     file_object = open("path.txt", 'w')
     file_object.write(TPath)
     file_object.close()
-    if os.path.exists('%s%s' %(TPath,RecordDate)) == False:
-        os.makedirs('%s%s' %(TPath,RecordDate))
+    DayFolder()
 
+def DayFolder():
+    file_object = open("path.txt")
+    RPath = file_object.read()
+    file_object.close()
+    if os.path.exists('%s%s' %(RPath,RecordDate)) == False:
+        os.makedirs('%s%s' %(RPath,RecordDate))
 
 while True:
     command = input("please enter the command: ")
