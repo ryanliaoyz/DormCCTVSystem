@@ -1,1 +1,1 @@
-example/
+/media/pi/27B7-B905/vc/

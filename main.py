@@ -14,6 +14,7 @@ RPath = file_object.read()
 file_object.close()
 
 def AutoCapture(CaptureAmount, CaptureGap):
+    DayFolder()
     while True:
         try:
             print("Ready!")
